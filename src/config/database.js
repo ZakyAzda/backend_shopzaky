@@ -1,7 +1,7 @@
 const mysql = require('mysql2');
 require('dotenv').config();
 
-const db = mysql.createConnection({
+const db = mysql.createPool({
     host: process.env.DB_HOST,
     user: process.env.DB_USER,
     password: process.env.DB_PASS,
@@ -17,7 +17,7 @@ db.getConnection((err, connection) => {
         console.error('❌ Database Error: ' + err.stack);
     } else {
         console.log('✅ Berhasil Konek ke Database Railway!');
-        connection.release(); 
+        connection.release();
     }
 });
 
